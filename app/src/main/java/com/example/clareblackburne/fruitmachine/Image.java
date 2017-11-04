@@ -4,11 +4,11 @@ package com.example.clareblackburne.fruitmachine;
  * Created by clareblackburne on 03/11/2017.
  */
 
-public class PayImage {
+public class Image {
 
         Symbol symbol;
 
-        public PayImage(Symbol symbol){
+        public Image(Symbol symbol){
                 this.symbol = symbol;
 
         }

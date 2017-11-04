@@ -6,9 +6,9 @@ package com.example.clareblackburne.fruitmachine;
 
 public class Player {
 
-    String name;
-    double funds;
-    FruitMachine fruitmachine;
+    private String name;
+    private double funds;
+    private FruitMachine fruitmachine;
 
     public Player(String name, double funds){
         this.name = name;

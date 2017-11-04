@@ -30,60 +30,61 @@ public class ConsoleLogger {
         System.out.println("Press any letter to see how much you could win!");
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
-        for(PayImage image : fruitmachine.reel1){
+        for (Image image : fruitmachine.getReel1()) {
             System.out.println(image.getSymbol() + " = " + format.format(image.getSymbol().getValue()));
         }
-        System.out.println("(Press any letter to continue)");
-        scanner.nextLine();
 
-        System.out.println("Right, " + player.getName() + ", let's spin!");
-        System.out.println("Spinnnnnning");
-        fruitmachine.spin(player);
+            System.out.println("(Press any letter to continue)");
+            scanner.nextLine();
+
+            System.out.println("Right, " + player.getName() + ", let's spin!");
+            System.out.println("Spinnnnnning");
+            fruitmachine.spin(player);
 
 
-        String answer = "";
-        do {
-            Scanner scan2 = new Scanner(System.in);
-            answer = scan2.nextLine();
+            String answer = "";
+            do {
+                Scanner scan2 = new Scanner(System.in);
+                answer = scan2.nextLine();
 
-            if (answer.contains("a")) {
-                fruitmachine.spin(player);
+                if (answer.contains("a")) {
+                    fruitmachine.spin(player);
 
-            } else if (answer.contains("b")) {
-                System.out.println("Press a to spin a single reel or b to spin two reels");
+                } else if (answer.contains("b")) {
+                    System.out.println("Press a to spin a single reel or b to spin two reels");
 
-                String answer2 = "";
-                answer2 = scan2.nextLine();
+                    String answer2 = "";
+                    answer2 = scan2.nextLine();
 
-                if (answer2.contains("a")) {
-                    System.out.println("Choose which reel to spin: 1, 2 or 3");
-                    int answer3 = scan.nextInt();
+                    if (answer2.contains("a")) {
+                        System.out.println("Choose which reel to spin: 1, 2 or 3");
+                        int answer3 = scan.nextInt();
 
-                    if (answer3 == 1) {
-                        fruitmachine.spinReel1();
-                        fruitmachine.checkIfWon();
-                    } else if (answer3 == 2) {
-                        fruitmachine.spinReel2();
-                        fruitmachine.checkIfWon();
+                        if (answer3 == 1) {
+                            fruitmachine.spinReel1();
+                            fruitmachine.checkIfWon();
+                        } else if (answer3 == 2) {
+                            fruitmachine.spinReel2();
+                            fruitmachine.checkIfWon();
+                        } else {
+                            fruitmachine.spinReel3();
+                            fruitmachine.checkIfWon();
+                        }
+
                     } else {
-                        fruitmachine.spinReel3();
-                        fruitmachine.checkIfWon();
+                        System.out.println("Choose which reel to stick with - 1, 2 or 3 - and spin the others");
+                        Scanner scanner2 = new Scanner(System.in);
+                        fruitmachine.holdOneReelSpinTwo(scanner2.nextInt());
                     }
-
-                } else {
-                    System.out.println("Choose which reel to stick with - 1, 2 or 3 - and spin the others");
-                    Scanner scanner2 = new Scanner(System.in);
-                    fruitmachine.holdOneReelSpinTwo(scanner2.nextInt());
                 }
             }
-        }
-            while (!fruitmachine.checkWin);
+            while (!fruitmachine.isCheckWin());
             fruitmachine.returnWinningsToPlayer(player);
-            System.out.println("You've won " + format.format(fruitmachine.spunreel.get(0).symbol.getValue()));
+            System.out.println("You've won " + format.format(fruitmachine.getSpunreel().get(0).symbol.getValue()));
             System.out.println("You've now got " + format.format(player.getFunds()));
+
         }
+}
 
 
-
-    }
 

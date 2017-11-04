@@ -16,20 +16,19 @@ public class TestFruitMachine {
     FruitMachine fruitMachine;
     FruitMachine spyFruitMachine;
     Player player;
-    PayImage payImage;
+    Image image;
 
     @Before
     public void before(){
         fruitMachine = new FruitMachine(1000, 5);
         player = new Player("Bob", 100);
-        payImage = new PayImage(BANANA);
+        image = new Image(BANANA);
         spyFruitMachine = Mockito.spy(fruitMachine);
     }
 
     @Test
     public void testHasReels(){
-        assertEquals(9, fruitMachine.reel1.size());
-        assertEquals(9, fruitMachine.reel2.size());
+        assertEquals(9, fruitMachine.getReel1().size());
     }
 
     @Test
@@ -41,13 +40,13 @@ public class TestFruitMachine {
 
     @Test
     public void testHasSpunReel(){
-        assertEquals(3, fruitMachine.spunreel.size());
+        assertEquals(3, fruitMachine.getSpunreel().size());
     }
 
     @Test
     public void testCanSpinOneReel(){
-        Mockito.when(spyFruitMachine.spinReel1()).thenReturn(new PayImage(Symbol.BANANA));
-        PayImage payimage = spyFruitMachine.spinReel1();
+        Mockito.when(spyFruitMachine.spinReel1()).thenReturn(new Image(Symbol.BANANA));
+        Image payimage = spyFruitMachine.spinReel1();
         assertEquals(BANANA, payimage.getSymbol());
     }
 
@@ -70,18 +69,18 @@ public class TestFruitMachine {
 
     @Test
     public void testCanWin(){
-        Mockito.when(spyFruitMachine.spinReel1()).thenReturn(new PayImage(Symbol.BANANA));
-        Mockito.when(spyFruitMachine.spinReel2()).thenReturn(new PayImage(Symbol.BANANA));
-        Mockito.when(spyFruitMachine.spinReel3()).thenReturn(new PayImage(Symbol.BANANA));
-        PayImage pay1 = spyFruitMachine.spinReel1();
-        PayImage pay2 = spyFruitMachine.spinReel2();
-        PayImage pay3 = spyFruitMachine.spinReel3();
-        spyFruitMachine.spunreel.add(0, pay1);
-        spyFruitMachine.spunreel.add(1, pay2);
-        spyFruitMachine.spunreel.add(2, pay3);
+        Mockito.when(spyFruitMachine.spinReel1()).thenReturn(new Image(Symbol.BANANA));
+        Mockito.when(spyFruitMachine.spinReel2()).thenReturn(new Image(Symbol.BANANA));
+        Mockito.when(spyFruitMachine.spinReel3()).thenReturn(new Image(Symbol.BANANA));
+        Image pay1 = spyFruitMachine.spinReel1();
+        Image pay2 = spyFruitMachine.spinReel2();
+        Image pay3 = spyFruitMachine.spinReel3();
+        spyFruitMachine.getSpunreel().add(0, pay1);
+        spyFruitMachine.getSpunreel().add(1, pay2);
+        spyFruitMachine.getSpunreel().add(2, pay3);
         spyFruitMachine.checkIfWon();
         spyFruitMachine.returnWinningsToPlayer(player);
-        assertEquals(true, spyFruitMachine.checkWin);
+        assertEquals(true, spyFruitMachine.isCheckWin());
         assertEquals(970.0, spyFruitMachine.getFunds(), 0.1);
         assertEquals(130, player.getFunds(), 0.1);
     }

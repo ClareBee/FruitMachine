@@ -12,11 +12,11 @@ import static org.junit.Assert.assertEquals;
 public class TestPayImage {
 
 
-    PayImage payimage;
+    Image payimage;
 
     @Before
     public void before(){
-        payimage = new PayImage(Symbol.BANANA);
+        payimage = new Image(Symbol.BANANA);
     }
 
     @Test
