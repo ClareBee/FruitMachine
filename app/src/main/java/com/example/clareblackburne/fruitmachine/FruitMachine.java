@@ -1,6 +1,5 @@
 package com.example.clareblackburne.fruitmachine;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -97,11 +96,9 @@ public class FruitMachine {
 
 
     public void takeMoney(Player player){
-        NumberFormat formatter = NumberFormat.getCurrencyInstance();
         if(player.getFunds() > 0) {
             player.setFunds(player.getFunds() - this.cost);
             this.funds += this.cost;
-            System.out.println("You now have " + formatter.format(player.getFunds()));
         } else {
             System.out.println("Sorry, game over, you've run out of cash!");
             System.exit(0);

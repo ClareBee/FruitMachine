@@ -40,6 +40,7 @@ public class ConsoleLogger {
             System.out.println("Right, " + player.getName() + ", let's spin!");
             System.out.println("Spinnnnnning");
             fruitmachine.spin(player);
+            System.out.println("You now have " + format.format(player.getFunds()));
 
 
             String answer = "";
@@ -49,6 +50,7 @@ public class ConsoleLogger {
 
                 if (answer.contains("a")) {
                     fruitmachine.spin(player);
+                    System.out.println("You now have " + format.format(player.getFunds()));
 
                 } else if (answer.contains("b")) {
                     System.out.println("Press a to spin a single reel or b to spin two reels");
