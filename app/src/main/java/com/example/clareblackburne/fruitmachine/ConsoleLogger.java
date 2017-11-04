@@ -17,13 +17,16 @@ public class ConsoleLogger {
 
 
         System.out.println("Welcome to the Fruitmachine");
+
         System.out.println("What's your name?");
         String name = "";
         Scanner scan = new Scanner(System.in);
         player.setName(scan.nextLine());
         System.out.println("Hello, " + player.getName() + ". How much money do you have?");
         player.setFunds(scan.nextDouble());
+
         System.out.println("This fruitmachine costs " + format.format(fruitmachine.getCost()) + " every time you spin all three reels. After the first spin, you can choose to spin just one of the reels, or hold one and spin the other two!");
+
         System.out.println("Press any letter to see how much you could win!");
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
@@ -32,6 +35,7 @@ public class ConsoleLogger {
         }
         System.out.println("(Press any letter to continue)");
         scanner.nextLine();
+
         System.out.println("Right, " + player.getName() + ", let's spin!");
         System.out.println("Spinnnnnning");
         fruitmachine.spin(player);
